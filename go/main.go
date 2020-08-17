@@ -2,31 +2,25 @@ package main
 
 import (
 	"./common"
-	"sync"
+	"./math"
+	"fmt"
 	"time"
 )
-
-var lock sync.Mutex
 
 func main() {
 	defer common.Monitor(time.Now())
 	defer common.ErrorHandler()
-	count := 10
-	wg := sync.WaitGroup{}
-	wg.Add(count)
-	m := make(map[int]int)
-	i := 0
-	f := func(m map[int]int) int {
-		i++
-		lock.Lock()
-		m[i] = i
-		a := m[i]
-		wg.Done()
-		lock.Unlock()
-		return a
+	k := math.Knapsack{
+		Num:       10,
+		WeightArr: []int{10, 2, 3, 4, 5, 6, 7, 3, 2, 1},
+		PriceArr:  []int{1, 3, 4, 5, 5, 6, 4, 5, 2, 20},
+		MaxWeight: 15,
 	}
-	for i := 0; i < count; i++ {
-		go f(m)
-	}
-	wg.Wait()
+	k.Run()
+	fmt.Println(k.MaxPrice)
+	fmt.Println("计算次数：", k.I)
+
+	k.DpRun()
+	fmt.Println(k.MaxPrice)
+	fmt.Println("计算次数：", k.I)
 }
