@@ -2,7 +2,6 @@ package lock
 
 import (
 	"bytes"
-	"flag"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -10,12 +9,6 @@ import (
 )
 
 var lock int
-
-func init() {
-	fmt.Println("lock test init")
-	flag.IntVar(&lock, "lock", 1, "lock flag")
-	flag.Parse()
-}
 
 func TestLock() {
 	var buffer bytes.Buffer

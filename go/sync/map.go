@@ -1,13 +1,8 @@
 package lock
 
 import (
-	"fmt"
 	"sync"
 )
-
-func init() {
-	fmt.Println("sync map test init")
-}
 
 type SyncMap struct {
 	data map[interface{}]interface{}

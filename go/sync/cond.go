@@ -5,10 +5,6 @@ import (
 	"sync"
 )
 
-func init() {
-	fmt.Println("cond test init")
-}
-
 func TestCode() {
 	var hasMsg bool
 	var msg string
